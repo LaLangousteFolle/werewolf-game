@@ -167,13 +167,12 @@ async def handle_websocket_message(data: dict, websocket: WebSocket):
 
 @app.get("/auth/login")
 async def login():
-    """Redirige vers Discord OAuth2."""
     discord_auth_url = (
-        f"https://discord.com/api/oauth2/authorize"
+        "https://discord.com/api/oauth2/authorize"
         f"?client_id={DISCORD_CLIENT_ID}"
         f"&redirect_uri={DISCORD_REDIRECT_URI}"
-        f"&response_type=code"
-        f"&scope=identify"
+        "&response_type=code"
+        "&scope=identify"
     )
     return {"auth_url": discord_auth_url}
 

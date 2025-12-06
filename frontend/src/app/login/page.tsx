@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation';
 import { getDiscordAuthUrl } from '@/lib/auth';
 import { LogIn } from 'lucide-react';
 
+const authUrl = await getDiscordAuthUrl(); 
+window.location.href = authUrl;
+
 export default function LoginPage() {
   const router = useRouter();
 
