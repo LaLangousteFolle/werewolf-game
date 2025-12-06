@@ -5,6 +5,11 @@ from typing import Optional
 from jose import JWTError, jwt
 from fastapi import HTTPException, Header
 import httpx
+from dotenv import load_dotenv
+
+BASE_DIR = os.path.dirname(__file__)
+ENV_PATH = os.path.join(BASE_DIR, ".env")
+load_dotenv(ENV_PATH)
 
 SECRET_KEY = os.getenv("JWT_SECRET", "your-secret-key-change-this")
 ALGORITHM = "HS256"

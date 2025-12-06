@@ -12,6 +12,8 @@ import os
 from dotenv import load_dotenv
 from auth import create_access_token, verify_token, exchange_code, get_discord_user
 
+BASE_DIR = os.path.dirname(__file__)
+ENV_PATH = os.path.join(BASE_DIR, ".env")
 load_dotenv()
 
 DISCORD_BOT_URL = os.getenv("DISCORD_BOT_URL", "http://localhost:8080")
