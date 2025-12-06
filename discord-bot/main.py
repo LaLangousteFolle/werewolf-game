@@ -40,19 +40,21 @@ async def on_ready():
 
 # ========== API REST pour le backend ==========
 
-@app.get("/api/players/check/{player_id}")
-async def check_player_in_voice(player_id: str):
+async def check_player_in_voice(request: web.Request):
     """Vérifie si un joueur est toujours dans le vocal."""
+    player_id = request.match_info["player_id"]
     channel = state["voice_channel"]
     if not channel:
-        return {"in_voice": False}
+        return web.json_response({"in_voice": False})
     
     player_in_voice = any(str(m.id) == player_id for m in channel.members if not m.bot)
     
-    return {
-        "in_voice": player_in_voice,
-        "channel_name": channel.name if player_in_voice else None
-    }
+    return web.json_response(
+        {
+            "in_voice": player_in_voice,
+            "channel_name": channel.name if player_in_voice else None,
+        }
+    )
     
 async def handle_phase_change(request):
     """Change la phase et gère le mute/unmute."""
