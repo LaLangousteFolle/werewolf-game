@@ -42,7 +42,6 @@ export const getDiscordAuthUrl = async (): Promise<string> => {
   const response = await axios.get(`${API_URL}/auth/login`);
   return response.data.auth_url;
 };
-
 export const handleDiscordCallback = async (code: string): Promise<PlayerAuth> => {
   const response = await axios.post(`${API_URL}/auth/callback?code=${code}`);
   return response.data;
